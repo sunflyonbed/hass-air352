@@ -91,11 +91,20 @@ class Air352Switch(CoordinatorEntity[Air352Coordinator], SwitchEntity):
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         await self.coordinator.api.set_device_properties(self._iot_id, {self.entity_description.key: 1})
-        await self.coordinator.async_request_refresh()
+        self._update_local_state(1)
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         await self.coordinator.api.set_device_properties(self._iot_id, {self.entity_description.key: 0})
-        await self.coordinator.async_request_refresh()
+        self._update_local_state(0)
+
+    def _update_local_state(self, value: int) -> None:
+        props = self.coordinator.data.get(self._iot_id, {})
+        prop = props.get(self.entity_description.key)
+        if isinstance(prop, dict):
+            prop["value"] = value
+        else:
+            props[self.entity_description.key] = {"value": value}
+        self.async_write_ha_state()
 
     @property
     def available(self) -> bool:

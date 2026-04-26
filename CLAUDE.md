@@ -52,6 +52,10 @@ custom_components/air352/
     └── zh-Hans.json      # 中文翻译
 ```
 
+## 调研文档
+
+- [docs/INVESTIGATION.md](docs/INVESTIGATION.md) — 完整逆向工程记录（API 签名、MQTT 网关模式、ACCS 推送、局域网 CoAP 线索）
+
 ## 开发注意
 
 - 零外部依赖，所有签名手动实现
