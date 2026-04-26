@@ -1,0 +1,54 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "352 空气账号",
+        "description": "请输入 352Life App 的账号和密码",
+        "data": {
+          "username": "手机号或邮箱",
+          "password": "密码"
+        }
+      },
+      "reauth_confirm": {
+        "title": "重新认证 352 Air",
+        "data": {
+          "password": "密码"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接到 352 服务器",
+      "invalid_auth": "手机号或密码错误",
+      "unknown": "未知错误"
+    },
+    "abort": {
+      "already_configured": "该账号已配置",
+      "reauth_successful": "重新认证成功"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "pm25": { "name": "PM2.5" },
+      "tvoc": { "name": "TVOC" },
+      "hcho": { "name": "甲醛" },
+      "co2": { "name": "二氧化碳" },
+      "currenttemperature": { "name": "温度" },
+      "relativehumidity": { "name": "湿度" },
+      "filterlifetimepercent_1": { "name": "滤芯1寿命" },
+      "filterlifetimepercent_2": { "name": "滤芯2寿命" },
+      "filterlifetimepercent_3": { "name": "滤芯3寿命" },
+      "finishedwatertds": { "name": "出水TDS" },
+      "rawwatertds": { "name": "进水TDS" },
+      "watertemperature": { "name": "水温" },
+      "totalpurewater": { "name": "累计净水量" },
+      "wifi_rssi": { "name": "WiFi信号" }
+    },
+    "switch": {
+      "powerswitch": { "name": "电源" },
+      "childlockswitch": { "name": "童锁" },
+      "screenswitch": { "name": "屏幕" },
+      "ionsswitch": { "name": "负离子" },
+      "smartmodeswitch": { "name": "智能模式" }
+    }
+  }
+}

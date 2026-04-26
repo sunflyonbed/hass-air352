@@ -1,0 +1,10 @@
+{
+  "domain": "air352",
+  "name": "352 Air",
+  "codeowners": ["@geminiwen"],
+  "config_flow": true,
+  "documentation": "https://github.com/geminiwen/hass-352",
+  "iot_class": "cloud_polling",
+  "version": "2.0.0",
+  "requirements": []
+}
