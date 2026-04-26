@@ -9,7 +9,7 @@ ALI_APP_SECRET = "b66d2c9767cd15a7c5a088341055d134"
 ALI_DOMAIN = "api.link.aliyun.com"
 ALI_OA_DOMAIN = "living-account.cn-shanghai.aliyuncs.com"
 
-DEFAULT_SCAN_INTERVAL = 120
+DEFAULT_SCAN_INTERVAL = 30
 
 CONF_IOT_TOKEN = "iot_token"
 CONF_IOT_REFRESH_TOKEN = "iot_refresh_token"
