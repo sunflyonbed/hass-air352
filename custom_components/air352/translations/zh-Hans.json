@@ -43,6 +43,19 @@
       "totalpurewater": { "name": "累计净水量" },
       "wifi_rssi": { "name": "WiFi信号" }
     },
+    "fan": {
+      "air_purifier": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "auto": "自动",
+              "sleep": "睡眠",
+              "manual": "手动"
+            }
+          }
+        }
+      }
+    },
     "switch": {
       "powerswitch": { "name": "电源" },
       "childlockswitch": { "name": "童锁" },

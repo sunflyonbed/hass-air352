@@ -25,5 +25,20 @@
       "already_configured": "This account is already configured",
       "reauth_successful": "Re-authentication successful"
     }
+  },
+  "entity": {
+    "fan": {
+      "air_purifier": {
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "auto": "Auto",
+              "sleep": "Sleep",
+              "manual": "Manual"
+            }
+          }
+        }
+      }
+    }
   }
 }

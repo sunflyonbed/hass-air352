@@ -22,7 +22,7 @@ SWITCH_DESCRIPTIONS: list[Air352SwitchDescription] = [
     Air352SwitchDescription(
         key="PowerSwitch", name="Power",
         icon="mdi:power",
-        category_keys=(DEVICE_TYPE_AIR, DEVICE_TYPE_HUMIDIFIER),
+        category_keys=(DEVICE_TYPE_HUMIDIFIER,),
     ),
     Air352SwitchDescription(
         key="ChildLockSwitch", name="Child Lock",
@@ -42,7 +42,7 @@ SWITCH_DESCRIPTIONS: list[Air352SwitchDescription] = [
     Air352SwitchDescription(
         key="SmartModeSwitch", name="Smart Mode",
         icon="mdi:brain",
-        category_keys=(DEVICE_TYPE_AIR, DEVICE_TYPE_HUMIDIFIER),
+        category_keys=(DEVICE_TYPE_HUMIDIFIER,),
     ),
 ]
 
