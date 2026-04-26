@@ -106,7 +106,9 @@ class Air352ApiClient:
         }
         return headers, body_bytes
 
-    async def _ali_gw_request(self, path: str, params: dict, api_ver: str = "1.0.2", iot_token: str | None = None) -> dict:
+    _ALI_AUTH_ERROR_CODES = {401, 2001, 2002, 2459, 26101, 26102}
+
+    async def _ali_gw_request(self, path: str, params: dict, api_ver: str = "1.0.2", iot_token: str | None = None, _retried: bool = False) -> dict:
         headers, body = self._ali_gw_sign("POST", path, params, api_ver, iot_token)
         url = f"https://{ALI_DOMAIN}{path}"
         async with self._session.post(url, headers=headers, data=body, timeout=aiohttp.ClientTimeout(total=15)) as resp:
@@ -114,10 +116,18 @@ class Air352ApiClient:
             if raw[:2] == b"\x1f\x8b":
                 raw = gzip_decompress(raw)
             data = json.loads(raw)
-        if data.get("code") not in (200,):
-            msg = data.get("message", data.get("localizedMsg", "unknown"))
-            raise Air352ApiError(data.get("code", -1), msg)
-        return data
+        code = data.get("code", -1)
+        if code in (200,):
+            return data
+        msg = data.get("message", data.get("localizedMsg", "unknown"))
+        if code in self._ALI_AUTH_ERROR_CODES or "identity" in msg.lower() or "token" in msg.lower() or "session" in msg.lower():
+            if not _retried:
+                _LOGGER.info("IoT token invalid (%s: %s), re-authenticating", code, msg)
+                self._iot_token = None
+                await self.authenticate()
+                return await self._ali_gw_request(path, params, api_ver, self._iot_token, _retried=True)
+            raise Air352AuthError(f"Auth failed after retry: {code} {msg}")
+        raise Air352ApiError(code, msg)
 
     async def _ali_oa_login(self, access_token: str) -> str:
         """Call loginbyoauth on living-account endpoint, return sid."""
