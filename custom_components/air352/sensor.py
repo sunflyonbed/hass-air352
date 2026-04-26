@@ -164,6 +164,8 @@ class Air352Sensor(CoordinatorEntity[Air352Coordinator], SensorEntity):
         if prop is None:
             return None
         val = prop.get("value") if isinstance(prop, dict) else prop
+        if val == 65535:
+            return None
         return val
 
     @property
